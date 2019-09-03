@@ -69,3 +69,5 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+" Put swap files in .vim/tmp
+set directory^=$HOME/.vim/tmp//
