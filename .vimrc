@@ -14,8 +14,18 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'Raimondi/delimitMate'
 Plugin 'prettier/vim-prettier', { 'do': 'npm  install' }
 Plugin 'SirVer/ultisnips'
+" Add maktaba and codefmt to the runtimepath.
+" (The latter must be installed before it can be used.)
+Plugin 'google/vim-maktaba'
+Plugin 'google/vim-codefmt'
+" Also add Glaive, which is used to configure codefmt's maktaba flags. See
+" `:help :Glaive` for usage.
+Plugin 'google/vim-glaive'
+Plugin 'tell-k/vim-autopep8'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+" the glaive#Install() should go after the "call vundle#end()"
+call glaive#Install()
 filetype plugin indent on    " required
 "enable syntax modifiers
 syntax on
@@ -71,3 +81,10 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 " Put swap files in .vim/tmp
 set directory^=$HOME/.vim/tmp//
+
+augroup autoformat_settings
+  autocmd FileType c,cpp AutoFormatBuffer clang-format
+augroup END
+" autopep8
+let g:autopep8_on_save = 1 
+let g:autopep8_disable_show_diff=1
